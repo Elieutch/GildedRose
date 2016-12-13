@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GildedRose {
 
 	private static List<Item> items = null;
@@ -24,39 +23,34 @@ public class GildedRose {
         updateQuality();
 }
 	
-	
-
-	
-
-	
     public static void updateQuality()
     {
         for (int i = 0; i < items.size(); i++)
         {
-            if ((!"Aged Brie".equals(items.get(i).getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName())) 
+			if ("Sulfuras, Hand of Ragnaros".equals(items.get(i).getName())){continue;} //REFACTORING : less calcul and less line code
+			
+            else if ((!"Aged Brie".equals(items.get(i).getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName())) 
             {
                 if (items.get(i).getQuality() > 0)
                 {
-                    if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
-                    {
                     	
-                    	if("Conjured Mana Cake".equals(items.get(i).getName()))
-                    	{
-                    		items.get(i).setQuality(items.get(i).getQuality() - 2);
-                    		//Conjured Mana Cake Quality : 6-2
-                    	}
-                    	else
-                    	{
-                            items.get(i).setQuality(items.get(i).getQuality() - 1);
+                    if("Conjured Mana Cake".equals(items.get(i).getName()))
+                    {
+                    	items.get(i).setQuality(items.get(i).getQuality() - 2);
+                    	//Conjured Mana Cake Quality : 6-2
+                    }
+                    else
+                    {
+                           items.get(i).setQuality(items.get(i).getQuality() - 1);
                         	//Elixir of the Mongoose		Quality: 7-1
                         	//+5 Dexterity Vest 			Quality : 20-1
-                    	}
                     }
                 }
             }
+			
             else //Aged Brie ; Backstage passes to a TAFKAL80ETC concert
             {
-                if (items.get(i).getQuality() < 50)
+                if (items.get(i).getQuality() < 50)//REFACTORING : less calcul and less line code (this condition was duplicate twice)
                 { 
                     items.get(i).setQuality(items.get(i).getQuality() + 1);
                     //Aged Brie												Quality: 0+1
@@ -66,36 +60,25 @@ public class GildedRose {
                     {
                         if (items.get(i).getSellIn() < 11)
                         {
-                            if (items.get(i).getQuality() < 50)
-                            {
                                 items.get(i).setQuality(items.get(i).getQuality() + 1);
                               //Backstage passes to a TAFKAL80ETC concert 			Quality : x+1
-                            }
                         }
 
                         if (items.get(i).getSellIn() < 6)
                         {
-                            if (items.get(i).getQuality() < 50)
-                            {
                                 items.get(i).setQuality(items.get(i).getQuality() + 1);
                                 //Backstage passes to a TAFKAL80ETC concert 			Quality : x+1
-                                
-                            }
                         }
                     }
                 }
             }
 
-            if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
-            	//+5 Dexterity Vest ; Aged Brie ; Elixir of the Mongoose ; Backstage passes to a TAFKAL80ETC concert ; Conjured Mana Cake
-            {
-                items.get(i).setSellIn(items.get(i).getSellIn() - 1);
-                //+5 Dexterity Vest	SellIn : 10-1
-                //Aged Brie SellIn : 2-1
-                //Elixir SellIn : 5-1
-                //backstage SellIn : 15-1
-                //conjured SellIn :3-1
-            }
+            items.get(i).setSellIn(items.get(i).getSellIn() - 1);
+            //+5 Dexterity Vest	SellIn : 10-1
+            //Aged Brie SellIn : 2-1
+            //Elixir SellIn : 5-1
+            //backstage SellIn : 15-1
+            //conjured SellIn :3-1
 
             if (items.get(i).getSellIn() < 0)
             {
@@ -114,21 +97,16 @@ public class GildedRose {
                     	//Sulfuris
                         if (items.get(i).getQuality() > 0)
                         {
-
-                        	if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
+                            if("Conjured Mana Cake".equals(items.get(i).getName()))
                             {
-                            	if("Conjured Mana Cake".equals(items.get(i).getName()))
-                            	{
-                            		items.get(i).setQuality(items.get(i).getQuality() - 2);
-                            		//conjured Quality : x-2
-                            	}
-                            	else
-                            	{
-                                    items.get(i).setQuality(items.get(i).getQuality() - 1);
-                                    //+5 Dexterity Vest	SellIn Quality : x -1
-                                    //Elixir Quality : x-1
-                            	}
-                            	
+                            	items.get(i).setQuality(items.get(i).getQuality() - 2);
+                            	//conjured Quality : x-2
+                            }
+                            else
+                            {
+                                items.get(i).setQuality(items.get(i).getQuality() - 1);
+                                //+5 Dexterity Vest	SellIn Quality : x -1
+                                //Elixir Quality : x-1
                             }
                         }
                     }
